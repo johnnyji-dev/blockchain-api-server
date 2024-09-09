@@ -1,4 +1,4 @@
-export const WalletResultDescription = {
+export const SolWalletResultDescription = {
     createKeypair: 
     `<ul>
         <li><code>publicKey: &lt;string&gt;</code> - The public key of a keypair.</li>

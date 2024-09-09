@@ -3,7 +3,7 @@ export enum NetworkSelector {
     Testnet = "Testnet",
 }
 
-export const OnChainResultDescription = {
+export const OnChainSolResultDescription = {
     getAccountInfo: // 01_01
     `<ul>
         <li><code>&lt;null&gt;</code> - if the requested account doesn't exist</li>

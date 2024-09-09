@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { SOLANA_SWAGGER_TAG, SOLANA_WALLET_ROUTE_PATH } from '../sol.constants';
 import { SolWalletService } from './sol.wallet.service';
 import { ApiOkResponse, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { WalletResultDescription } from './sol.wallet.data';
+import { SolWalletResultDescription } from './sol.wallet.data';
 
 @ApiTags(SOLANA_SWAGGER_TAG)
 @Controller(SOLANA_WALLET_ROUTE_PATH)
@@ -15,7 +15,7 @@ export class SolWalletController {
         description: 'keypair(wallet)을 생성한다.'
     })
     @ApiOkResponse({
-        description: WalletResultDescription.createKeypair,
+        description: SolWalletResultDescription.createKeypair,
         type: String, 
     })
     createWallet() {
@@ -28,7 +28,7 @@ export class SolWalletController {
         description: 'Mnemonics을 생성한다.'
     })
     @ApiOkResponse({
-        description: WalletResultDescription.generateMnemonics,
+        description: SolWalletResultDescription.generateMnemonics,
         type: String, 
     })
     generateMnemonics() {
@@ -42,7 +42,7 @@ export class SolWalletController {
     })
     @ApiQuery({ name: 'mnemonics', type: 'string', required: true, description: '니모닉 단어 목록' })
     @ApiOkResponse({
-        description: WalletResultDescription.createKeypair,
+        description: SolWalletResultDescription.createKeypair,
         type: String, 
     })
     importFromMnemonics(@Query('mnemonics') mnemonics: string) {

@@ -2,7 +2,7 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 import { SOLANA_ONCHAIN_ROUTE_PATH, SOLANA_SWAGGER_TAG } from '../sol.constants';
 import { ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { SolOnChainService } from './sol.on-chain.service';
-import { NetworkSelector, OnChainResultDescription } from './sol.on-chain.data';
+import { NetworkSelector, OnChainSolResultDescription } from './sol.on-chain.data';
 
 @ApiTags(SOLANA_SWAGGER_TAG)
 @Controller(SOLANA_ONCHAIN_ROUTE_PATH)
@@ -22,7 +22,7 @@ export class SolOnChainController {
         description: 'Pubkey of account to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getAccountInfo,
+        description: OnChainSolResultDescription.getAccountInfo,
         type: String, 
     })
     async getAccountInfo(@Query('network') network: string, @Param('publicKey') publicKey: string) {
@@ -42,7 +42,7 @@ export class SolOnChainController {
         description: 'Pubkey of account to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBalance,
+        description: OnChainSolResultDescription.getBalance,
         type: String
     })
     async getBalance(@Query('network') network: string, @Param('publicKey') publicKey: string) {
@@ -62,7 +62,7 @@ export class SolOnChainController {
         description: 'slot number, as u64 integer'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlock,
+        description: OnChainSolResultDescription.getBlock,
         type: String
     })
     async getBlock(@Query('network') network: string, @Param('slotNumber') slotNumber: string): Promise<any> {
@@ -82,7 +82,7 @@ export class SolOnChainController {
         description: 'block number, identified by Slot'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlockCommitment,
+        description: OnChainSolResultDescription.getBlockCommitment,
         type: String
     })
     async getBlockCommitment(@Query('network') network: string, @Param('blockNumber') blockNumber: string): Promise<any> {
@@ -96,7 +96,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlockHeight,
+        description: OnChainSolResultDescription.getBlockHeight,
         type: String
     })
     async getLatestBlockNumber(@Query('network') network: string) {
@@ -110,7 +110,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlockProduction,
+        description: OnChainSolResultDescription.getBlockProduction,
         type: String
     })
     async getBlockProduction(@Query('network') network: string) {
@@ -130,7 +130,7 @@ export class SolOnChainController {
         description: 'block number, identified by Slot'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlockTime,
+        description: OnChainSolResultDescription.getBlockTime,
         type: String
     })
     async getBlockTime(@Query('network') network: string, @Param('blockNumber') blockNumber: string) {
@@ -156,7 +156,7 @@ export class SolOnChainController {
         description: 'end_slot, as u64 integer (must be no more than 500,000 blocks higher than the start_slot)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlocks,
+        description: OnChainSolResultDescription.getBlocks,
         type: String
     })
     async getBlocks(
@@ -185,7 +185,7 @@ export class SolOnChainController {
         description: 'limit, as u64 integer (must be no more than 500,000 blocks higher than the start_slot)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getBlocksWithLimit,
+        description: OnChainSolResultDescription.getBlocksWithLimit,
         type: String
     })
     async getBlocksWithLimit(
@@ -202,7 +202,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getClusterNodes,
+        description: OnChainSolResultDescription.getClusterNodes,
         type: String
     })
     async getClusterNodes(
@@ -217,7 +217,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getEpochInfo,
+        description: OnChainSolResultDescription.getEpochInfo,
         type: String
     })
     async getEpochInfo(
@@ -232,7 +232,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getEpochSchedule,
+        description: OnChainSolResultDescription.getEpochSchedule,
         type: String
     })
     async getEpochSchedule(
@@ -253,7 +253,7 @@ export class SolOnChainController {
         description: 'Base-64 encoded Message'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getFeeForMessage,
+        description: OnChainSolResultDescription.getFeeForMessage,
         type: String
     })
     async getFeeForMessage(
@@ -269,7 +269,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getFirstAvailableBlock,
+        description: OnChainSolResultDescription.getFirstAvailableBlock,
         type: String
     })
     async getFirstAvailableBlock(
@@ -284,7 +284,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getGenesisHash,
+        description: OnChainSolResultDescription.getGenesisHash,
         type: String
     })
     async getGenesisHash(
@@ -299,7 +299,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getHealth,
+        description: OnChainSolResultDescription.getHealth,
         type: String
     })
     async getHealth(
@@ -315,7 +315,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getHighestSnapshotSlot,
+        description: OnChainSolResultDescription.getHighestSnapshotSlot,
         type: String
     })
     async getHighestSnapshotSlot(
@@ -330,7 +330,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getIdentity,
+        description: OnChainSolResultDescription.getIdentity,
         type: String
     })
     async getIdentity(
@@ -345,7 +345,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getIdentity,
+        description: OnChainSolResultDescription.getIdentity,
         type: String
     })
     async getInflationGovernor(
@@ -360,7 +360,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getInflationRate,
+        description: OnChainSolResultDescription.getInflationRate,
         type: String
     })
     async getInflationRate(
@@ -387,7 +387,7 @@ export class SolOnChainController {
         description: 'An epoch for which the reward occurs. If omitted, the previous epoch will be used'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getInflationReward,
+        description: OnChainSolResultDescription.getInflationReward,
         type: String
     })
     async getInflationReward(
@@ -404,7 +404,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getLargestAccounts,
+        description: OnChainSolResultDescription.getLargestAccounts,
         type: String
     })
     async getLargestAccounts(
@@ -419,7 +419,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getLatestBlockhash,
+        description: OnChainSolResultDescription.getLatestBlockhash,
         type: String
     })
     async getLatestBlockhash(
@@ -434,7 +434,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getLeaderSchedule,
+        description: OnChainSolResultDescription.getLeaderSchedule,
         type: String
     })
     async getLeaderSchedule(
@@ -449,7 +449,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getMaxRetransmitSlot,
+        description: OnChainSolResultDescription.getMaxRetransmitSlot,
         type: String
     })
     async getMaxRetransmitSlot(
@@ -464,7 +464,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getMaxShredInsertSlot,
+        description: OnChainSolResultDescription.getMaxShredInsertSlot,
         type: String
     })
     async getMaxShredInsertSlot(
@@ -485,7 +485,7 @@ export class SolOnChainController {
         description: 'the Account\'s data length'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getMinimumBalanceForRentExemption,
+        description: OnChainSolResultDescription.getMinimumBalanceForRentExemption,
         type: String
     })
     async getMinimumBalanceForRentExemption(
@@ -507,7 +507,7 @@ export class SolOnChainController {
         description: 'An array of Pubkeys to query, as base-58 encoded strings (up to a maximum of 100)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getMultipleAccounts,
+        description: OnChainSolResultDescription.getMultipleAccounts,
         type: String
     })
     async getMultipleAccounts(
@@ -529,7 +529,7 @@ export class SolOnChainController {
         description: 'Pubkey of program, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getProgramAccounts,
+        description: OnChainSolResultDescription.getProgramAccounts,
         type: String
     })
     async getProgramAccounts(
@@ -553,7 +553,7 @@ export class SolOnChainController {
         description: 'number of samples to return (maximum 720)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getRecentPerformanceSamples,
+        description: OnChainSolResultDescription.getRecentPerformanceSamples,
         type: String
     })
     async getRecentPerformanceSamples(
@@ -575,7 +575,7 @@ export class SolOnChainController {
         description: 'An array of Account addresses (up to a maximum of 128 addresses), as base-58 encoded strings'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getRecentPrioritizationFees,
+        description: OnChainSolResultDescription.getRecentPrioritizationFees,
         type: String
     })
     async getRecentPrioritizationFees(
@@ -597,7 +597,7 @@ export class SolOnChainController {
         description: 'An array of transaction signatures to confirm, as base-58 encoded strings (up to a maximum of 256)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getSignatureStatuses,
+        description: OnChainSolResultDescription.getSignatureStatuses,
         type: String
     })
     async getSignatureStatuses(
@@ -620,7 +620,7 @@ export class SolOnChainController {
         description: 'Account address as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getSignaturesForAddress,
+        description: OnChainSolResultDescription.getSignaturesForAddress,
         type: String
     })
     async getSignaturesForAddress(
@@ -636,7 +636,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getSlot,
+        description: OnChainSolResultDescription.getSlot,
         type: String
     })
     async getSlot(
@@ -651,7 +651,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getSlotLeader,
+        description: OnChainSolResultDescription.getSlotLeader,
         type: String
     })
     async getSlotLeader(
@@ -678,7 +678,7 @@ export class SolOnChainController {
         description: 'Limit, as u64 integer (between 1 and 5,000)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getSlotLeaders,
+        description: OnChainSolResultDescription.getSlotLeaders,
         type: String
     })
     async getSlotLeaders(
@@ -701,7 +701,7 @@ export class SolOnChainController {
         description: 'Pubkey of stake Account to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getStakeActivation,
+        description: OnChainSolResultDescription.getStakeActivation,
         type: String
     })
     async getStakeActivation(
@@ -717,7 +717,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getStakeMinimumDelegation,
+        description: OnChainSolResultDescription.getStakeMinimumDelegation,
         type: String
     })
     async getStakeMinimumDelegation(
@@ -732,7 +732,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getSupply,
+        description: OnChainSolResultDescription.getSupply,
         type: String
     })
     async getSupply(
@@ -753,7 +753,7 @@ export class SolOnChainController {
         description: 'Pubkey of Token account to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTokenAccountBalance,
+        description: OnChainSolResultDescription.getTokenAccountBalance,
         type: String
     })
     async getTokenAccountBalance(
@@ -775,7 +775,7 @@ export class SolOnChainController {
         description: 'Pubkey of account delegate to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTokenAccountsByDelegate,
+        description: OnChainSolResultDescription.getTokenAccountsByDelegate,
         type: String
     })
     async getTokenAccountsByDelegate(
@@ -797,7 +797,7 @@ export class SolOnChainController {
         description: 'Pubkey of account delegate to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTokenAccountsByOwner,
+        description: OnChainSolResultDescription.getTokenAccountsByOwner,
         type: String
     })
     async getTokenAccountsByOwner(
@@ -819,7 +819,7 @@ export class SolOnChainController {
         description: 'Pubkey of the token Mint to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTokenLargestAccounts,
+        description: OnChainSolResultDescription.getTokenLargestAccounts,
         type: String
     })
     async getTokenLargestAccounts(
@@ -841,7 +841,7 @@ export class SolOnChainController {
         description: 'Pubkey of the token Mint to query, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTokenSupply,
+        description: OnChainSolResultDescription.getTokenSupply,
         type: String
     })
     async getTokenSupply(
@@ -863,7 +863,7 @@ export class SolOnChainController {
         description: 'Transaction signature, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getTransaction,
+        description: OnChainSolResultDescription.getTransaction,
         type: String
     })
     async getTransaction(
@@ -879,7 +879,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getTransactionCount,
+        description: OnChainSolResultDescription.getTransactionCount,
         type: String
     })
     async getTransactionCount(
@@ -894,7 +894,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getVersion,
+        description: OnChainSolResultDescription.getVersion,
         type: String
     })
     async getVersion(
@@ -915,7 +915,7 @@ export class SolOnChainController {
         description: 'Only return results for this validator vote address (base-58 encoded)'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getVoteAccounts,
+        description: OnChainSolResultDescription.getVoteAccounts,
         type: String
     })
     async getVoteAccounts(
@@ -937,7 +937,7 @@ export class SolOnChainController {
         description: 'the blockhash of the block to evaluate, as base-58 encoded string'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.getIsBlockhashValid,
+        description: OnChainSolResultDescription.getIsBlockhashValid,
         type: String
     })
     async getIsBlockhashValid(
@@ -953,7 +953,7 @@ export class SolOnChainController {
     })
     @ApiQuery({name: 'network', enum: NetworkSelector})
     @ApiOkResponse({
-        description: OnChainResultDescription.getMinimumLedgerSlot,
+        description: OnChainSolResultDescription.getMinimumLedgerSlot,
         type: String
     })
     async getMinimumLedgerSlot(
@@ -980,7 +980,7 @@ export class SolOnChainController {
         description: 'lamports to airdrop, as a "u64"'
     })
     @ApiOkResponse({
-        description: OnChainResultDescription.requestAirdrop,
+        description: OnChainSolResultDescription.requestAirdrop,
         type: String
     })
     async requestAirdrop(
